@@ -5,5 +5,7 @@ interface PostProps {
 }
 
 export const Post: React.FC<PostProps> = ({ post }) => {
-  return <div className="border border-borders px-4 py-6">{post.content}</div>;
+  return (
+    <div className="border border-siteBorders px-4 py-6">{post.content}</div>
+  );
 };

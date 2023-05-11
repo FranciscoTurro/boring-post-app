@@ -1,4 +1,6 @@
-import { useUser } from "@clerk/nextjs";
+import { SignIn, useUser } from "@clerk/nextjs";
+import Image from "next/image";
+import { Input } from "./ui/Input";
 
 export const CreatePost: React.FC = ({}) => {
   const { user } = useUser();
@@ -7,11 +9,18 @@ export const CreatePost: React.FC = ({}) => {
 
   return (
     <div className="p-2">
-      <img
-        className="h-10 w-10 rounded-full"
-        src={user.profileImageUrl}
-        alt="User profile image"
-      />
+      {user ? (
+        <Image
+          src={user.profileImageUrl}
+          alt="User profile image"
+          width={40}
+          height={40}
+          className="rounded-full"
+        />
+      ) : (
+        <SignIn />
+      )}
+      <Input />
     </div>
   );
 };
