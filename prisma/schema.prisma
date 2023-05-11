@@ -11,7 +11,7 @@ datasource db {
 model Post {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
-    content   String   @db.VarChar(255)
+    content   String   @db.VarChar(140)
     authorId  String
 
     @@index([authorId])

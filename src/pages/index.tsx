@@ -12,7 +12,7 @@ const Home: NextPage = () => {
 
   return (
     <main className="flex h-screen justify-center">
-      <div className="w-full border-x-2 border-siteBorders lg:max-w-2xl">
+      <div className="w-full border-x border-siteBorders lg:max-w-2xl">
         <CreatePost />
         {data.map((post) => (
           <Post post={post} key={post.id} />

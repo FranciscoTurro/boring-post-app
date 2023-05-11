@@ -17,6 +17,7 @@ export default {
         siteSecondary: "#03dac6",
         siteError: "#cf6679",
         siteBackground: "#121212",
+        siteBackgroundHover: "#2020204D",
         siteBorders: "#2F3336",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

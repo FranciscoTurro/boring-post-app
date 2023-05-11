@@ -6,6 +6,8 @@ interface PostProps {
 
 export const Post: React.FC<PostProps> = ({ post }) => {
   return (
-    <div className="border border-siteBorders px-4 py-6">{post.content}</div>
+    <div className="cursor-pointer border-b border-siteBorders px-4 py-6 hover:bg-siteBackgroundHover">
+      {post.content}
+    </div>
   );
 };
