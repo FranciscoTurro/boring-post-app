@@ -1,14 +1,23 @@
 import { type NextPage } from "next";
 import { api } from "~/utils/api";
+import { Post } from "../components/Post";
+import { CreatePost } from "../components/CreatePost";
 
 const Home: NextPage = () => {
-  const { data } = api.posts.getAll.useQuery();
+  const { data, isLoading } = api.posts.getAll.useQuery();
+
+  if (isLoading) return <div>...loading...</div>;
+
+  if (!data) return <div>something went wrong</div>;
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      {data?.map((post) => (
-        <div key={post.id}>{post.content}</div>
-      ))}
+    <main className="flex h-screen justify-center">
+      <div className="w-full border-x-2 border-borders lg:max-w-2xl">
+        <CreatePost />
+        {data.map((post) => (
+          <Post post={post} key={post.id} />
+        ))}
+      </div>
     </main>
   );
 };
