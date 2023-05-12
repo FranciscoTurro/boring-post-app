@@ -11,7 +11,7 @@ export const CreatePost: React.FC = ({}) => {
     <div className="flex gap-3 border-b border-siteBorders px-4 py-6">
       <Image
         src={user.profileImageUrl}
-        alt="User profile image"
+        alt="Your profile image"
         width={48}
         height={48}
         className="self-center rounded-full"
@@ -20,7 +20,7 @@ export const CreatePost: React.FC = ({}) => {
         placeholder="Thoughts?"
         className="w-full resize-none border-0 text-xl outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
       />
-      {/*make the textarea grow with text, not add a scroll bar inside of it*/}
+      {/*make the textarea grow with text, not add a scroll bar inside of it, also dont keep writing if over 140 characters*/}
     </div>
   );
 };
