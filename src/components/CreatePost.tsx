@@ -4,24 +4,24 @@ import { Textarea } from "./ui/Textarea";
 
 export const CreatePost: React.FC = ({}) => {
   const { user } = useUser();
-  console.log(user);
 
   if (!user) return null;
 
   return (
-    <div className="flex gap-3 border-b border-siteBorders p-4 lg:p-8">
-      <div>
-        <Image
-          src={user.profileImageUrl}
-          alt="User profile image"
-          width={40}
-          height={40}
-          className="rounded-full"
-        />
-      </div>
-      <Textarea className="w-full resize-none" />
+    <div className="flex gap-3 border-b border-siteBorders px-4 py-6">
+      <Image
+        src={user.profileImageUrl}
+        alt="User profile image"
+        width={48}
+        height={48}
+        className="self-center rounded-full"
+      />
+      <Textarea
+        placeholder="Thoughts?"
+        className="w-full resize-none border-0 text-xl outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+      />
+      {/*make the textarea grow with text, not add a scroll bar inside of it*/}
     </div>
   );
 };
-//proper ui, dont just folow the tut on this one. make everything look better
 //react hook form

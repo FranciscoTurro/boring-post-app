@@ -14,8 +14,8 @@ const Home: NextPage = () => {
     <main className="flex h-screen justify-center">
       <div className="w-full border-x border-siteBorders lg:max-w-2xl">
         <CreatePost />
-        {data.map((post) => (
-          <Post post={post} key={post.id} />
+        {data.map((postObj) => (
+          <Post PostObj={postObj} key={postObj.post.id} />
         ))}
       </div>
     </main>
