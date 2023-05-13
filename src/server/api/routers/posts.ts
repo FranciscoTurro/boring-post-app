@@ -8,6 +8,8 @@ import type { User } from "@clerk/nextjs/dist/api";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
+const POSTS_TO_TAKE = 100;
+
 const filterUserInfo = (user: User) => {
   const email = user.externalAccounts[0]?.emailAddress;
   //after adding custom credentials get the scope to get username and replace email with just the username
@@ -26,12 +28,12 @@ const filterUserInfo = (user: User) => {
 export const postsRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
     const posts = await ctx.prisma.post.findMany({
-      take: 100,
+      take: POSTS_TO_TAKE,
     });
     const users = (
       await clerkClient.users.getUserList({
         userId: posts.map((post) => post.authorId),
-        limit: 100,
+        limit: POSTS_TO_TAKE,
       })
     ).map(filterUserInfo);
 

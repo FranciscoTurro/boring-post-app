@@ -6,7 +6,7 @@ await import("./src/env.mjs");
 
 /** @type {import("next").NextConfig} */
 const config = {
-  images: { domains: ["images.clerk.dev"] },
+  images: { domains: ["images.clerk.dev", "lh3.googleusercontent.com"] },
   reactStrictMode: true,
   /**
    * If you have `experimental: { appDir: true }` set, then you must comment the below `i18n` config
