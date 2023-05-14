@@ -27,11 +27,11 @@ import { getAuth } from "@clerk/nextjs/dist/server-helpers.server";
 export const createTRPCContext = (opts: CreateNextContextOptions) => {
   const { req } = opts;
   const authObject = getAuth(req);
-  const currentUser = authObject.user;
+  const currentUserId = authObject.userId;
 
   return {
     prisma,
-    currentUser,
+    currentUserId,
   };
 };
 
@@ -84,7 +84,7 @@ export const createTRPCRouter = t.router;
 export const publicProcedure = t.procedure;
 
 const enforceUserIsAuthed = t.middleware(async ({ ctx, next }) => {
-  if (!ctx.currentUser)
+  if (!ctx.currentUserId)
     throw new TRPCError({
       code: "UNAUTHORIZED",
       message: "User not authenticated",
@@ -92,7 +92,7 @@ const enforceUserIsAuthed = t.middleware(async ({ ctx, next }) => {
 
   return next({
     ctx: {
-      currentUser: ctx.currentUser,
+      currentUserId: ctx.currentUserId,
     },
   });
 });
