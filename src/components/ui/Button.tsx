@@ -13,6 +13,7 @@ const buttonVariants = cva(
         secondary:
           "bg-siteSecondary text-primary-foreground hover:bg-siteSecondary/80",
       },
+
       size: {
         default: "h-10 py-2 px-4",
         sm: "h-9 px-3 rounded-md",

@@ -22,7 +22,7 @@ const Home: NextPage = () => {
     );
 
   return (
-    <main className="flex h-screen justify-center">
+    <main className="flex h-full justify-center">
       <div className="w-full border-x border-siteBorders lg:max-w-2xl">
         <CreatePost />
         {data.map((postObj) => (

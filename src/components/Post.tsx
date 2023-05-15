@@ -22,13 +22,13 @@ export const Post: React.FC<PostProps> = ({
         height={48}
         className="self-center rounded-full"
       />
-      <div>
+      <div className="w-full break-words">
         <div className="flex gap-1 text-sm text-neutral-300">
           <div className="font-bold">{author.email}</div>
           <span>·</span>
           <div> {dayjs(post.createdAt).fromNow()}</div>
         </div>
-        <div className="text-lg">{post.content}</div>
+        <div className="overflow-anywhere text-lg">{post.content}</div>
       </div>
     </div>
   );
