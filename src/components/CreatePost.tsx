@@ -58,7 +58,6 @@ export const CreatePost = ({}) => {
           disabled={isLoading}
           className="w-full resize-none border-0 text-xl outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
         />
-
         <div className="flex items-center gap-6">
           {inputContent.length > 0 && (
             <>
@@ -83,7 +82,7 @@ export const CreatePost = ({}) => {
           </Button>
         </div>
       </form>
-      {/*make the textarea grow with text, not add a scroll bar inside of it, also dont keep writing if over 140 characters*/}
+      {/*make the textarea grow with text, not add a scroll bar inside of it*/}
       {/*find a way to save the formatting on the post*/}
     </div>
   );
