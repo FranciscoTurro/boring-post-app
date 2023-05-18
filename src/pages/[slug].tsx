@@ -1,12 +1,9 @@
 import type { GetStaticProps, NextPage } from "next";
 import { api } from "../utils/api";
-import { createServerSideHelpers } from "@trpc/react-query/server";
-import { appRouter } from "../server/api/root";
-import { prisma } from "../server/db";
-import superjson from "superjson";
 import Head from "next/head";
 import Image from "next/image";
 import { ProfilePosts } from "../components/ProfilePosts";
+import { generateServerSideHelper } from "../server/utils/serverSideHelper";
 
 const Profile: NextPage<{ email: string }> = ({ email }) => {
   const { data: author } = api.profiles.getUserByEmail.useQuery({
@@ -52,12 +49,7 @@ const Profile: NextPage<{ email: string }> = ({ email }) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const helpers = createServerSideHelpers({
-    //helper functions that can prefetch queries on the server. calls procedures directly on the server, without an HTTP request
-    router: appRouter,
-    ctx: { currentUserId: null, prisma },
-    transformer: superjson,
-  });
+  const helpers = generateServerSideHelper();
 
   const slug = context.params?.slug;
   if (typeof slug !== "string") throw new Error("No slug");
