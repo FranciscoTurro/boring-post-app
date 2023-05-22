@@ -1,4 +1,0 @@
-- sidebar with home, post anywhere button, profile
-  - sign in / out, the same way twitter does it. profile picture and name, with 3 dots next to it to sign out
-- comments on posts
-- pagination / infinite scroll

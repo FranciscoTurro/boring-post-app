@@ -6,31 +6,36 @@ import { LoadingSpinner } from "../../components/ui/LoadingSpinner";
 import Image from "next/image";
 import dayjs from "dayjs";
 import Link from "next/link";
+import { Comment } from "../../components/Comment";
+import { CreateComment } from "../../components/CreateComment";
 
 const SinglePost: NextPage<{ postId: string }> = ({ postId }) => {
-  const { data, isLoading } = api.posts.getPostById.useQuery({ postId });
+  const { data: postsData, isLoading: postsLoading } =
+    api.posts.getPostById.useQuery({ postId });
+  const { data: commentsData, isLoading: commentsLoading } =
+    api.comments.getCommentsById.useQuery({ postId });
 
-  if (isLoading)
+  if (postsLoading)
     return (
       <div className="flex h-screen w-screen items-center justify-center">
         <LoadingSpinner />
       </div>
     );
 
-  if (!data)
+  if (!postsData)
     return (
       <div className="flex h-screen w-screen items-center justify-center">
         something went wrong
       </div>
     );
 
-  const { author, post } = data;
+  const { author, post } = postsData;
 
   return (
     <>
       <Head>
-        <title>{`${data.author.firstName ?? ""} on Boring: "${
-          data.post.content ?? ""
+        <title>{`${postsData.author.firstName ?? ""} on Boring: "${
+          postsData.post.content ?? ""
         }"`}</title>
       </Head>
       <main className="flex h-screen justify-center">
@@ -59,6 +64,18 @@ const SinglePost: NextPage<{ postId: string }> = ({ postId }) => {
               <span>·</span>
               <div>{dayjs(post.createdAt).format("MMMM D, YYYY")}</div>
             </div>
+          </div>
+          <CreateComment postId={postId} />
+          <div>
+            {commentsLoading ? (
+              <div className="flex justify-center">
+                <LoadingSpinner />
+              </div>
+            ) : (
+              commentsData?.map((commentObj) => (
+                <Comment key={commentObj.comment.id} CommentObj={commentObj} />
+              ))
+            )}
           </div>
         </div>
       </main>
