@@ -3,6 +3,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import Head from "next/head";
+import { Navbar } from "../components/Navbar";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
@@ -31,6 +32,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
+      <Navbar />
       <Component {...pageProps} />
     </ClerkProvider>
   );
